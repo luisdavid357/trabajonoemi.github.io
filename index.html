@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="es" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construcción Histórica de las Infancias</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #a78bfa, #38bdf8);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .member-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: gentlePulse 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gentlePulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+
+<body class="h-full">
+    <div id="app-wrapper" class="w-full h-full overflow-auto"
+        style="background-color: #0f172a; font-family: 'Outfit', sans-serif;">
+        <div class="blob" style="width: 400px; height: 400px; top: -100px; left: -100px; background: #6d28d940;"></div>
+        <div class="blob"
+            style="width: 350px; height: 350px; bottom: 10%; right: -80px; background: #0ea5e920; animation-delay: 3s;">
+        </div><!-- Navegación -->
+        <nav class="sticky top-0 w-full px-6 py-5 border-b"
+            style="background-color: rgba(15, 23, 42, 0.95); border-color: #1e293b; backdrop-filter: blur(10px); z-index: 50;">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center justify-between gap-8">
+                    <h1 class="text-xl font-bold" style="color: #f1f5f9; font-family: 'Playfair Display', serif;">
+                        Construcción Histórica de las Infancias</h1>
+                    <div class="flex items-center gap-6 md:gap-8 overflow-x-auto pb-2">
+                        <a href="#" onclick="handleNavClick(0, event)"
+                            class="nav-link active text-sm md:text-base whitespace-nowrap" style="color: #a78bfa;">El
+                            lugar de las infancias</a> <a href="#" onclick="handleNavClick(1, event)"
+                            class="nav-link text-sm md:text-base whitespace-nowrap" style="color: #94a3b8;">Trayectos
+                            históricos</a> <a href="#" onclick="handleNavClick(2, event)"
+                            class="nav-link text-sm md:text-base whitespace-nowrap"
+                            style="color: #94a3b8;">Transformación de realidades</a> <a href="#"
+                            onclick="handleNavClick(3, event)" class="nav-link text-sm md:text-base whitespace-nowrap"
+                            style="color: #94a3b8;">Desafíos para la acción</a>
+                    </div>
+                </div>
+            </div>
+        </nav><!-- Contenedor de páginas -->
+        <div id="pages-container">
+            <!-- Página 1: El lugar de las infancias -->
+            <div id="page-0" class="page-content w-full">
+                <!-- Título de página -->
+                <header class="w-full px-6 pt-12 pb-8">
+                    <div class="max-w-5xl mx-auto">
+                        <div class="w-16 h-1 mb-6 rounded-full"
+                            style="background: linear-gradient(90deg, #a78bfa, #38bdf8);"></div>
+                        <h2 id="page-title" class="text-4xl md:text-5xl font-bold mb-6"
+                            style="font-family: 'Playfair Display', serif; color: #f1f5f9;">El lugar de las infancias
+                        </h2>
+                    </div>
+                </header><!-- Sección de introducción -->
+                <section class="w-full px-6 py-12">
+                    <div class="max-w-5xl mx-auto">
+                        <p id="intro-text" class="text-lg leading-relaxed" style="color: #94a3b8;">Este proyecto explora
+                            el espacio donde se desarrollan las infancias, considerando los contextos sociales,
+                            culturales y emocionales que moldean el crecimiento de los niños y niñas. Buscamos entender
+                            cómo el entorno influye en la formación de identidades y experiencias únicas en cada etapa
+                            del desarrollo infantil.</p>
+                    </div>
+                </section><!-- Sección de equipo -->
+                <section class="w-full px-6 py-16 border-t border-b" style="border-color: #1e293b;">
+                    <div class="max-w-5xl mx-auto">
+                        <h3 class="text-2xl font-semibold mb-12" style="color: #f1f5f9;">Nuestro Equipo</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                            <!-- Integrante 1 -->
+                            <div class="member-card">
+                                <img id="member1-photo" src="img/noemi.png" alt="Foto de integrante 1" loading="lazy"
+                                    class="rounded-lg w-full object-cover"
+                                    style="aspect-ratio: 1; height: 350px; margin-bottom: 1.5rem;"
+                                    onerror="console.error('Image failed to load:', this.src); this.style.background='#a78bfa22'; this.alt='Foto no disponible';">
+                                <div style="padding: 0;">
+                                    <h4 id="member1-name" class="text-lg font-semibold"
+                                        style="color: #f1f5f9; margin-bottom: 0.75rem;">Noemi Jhoana Paredes Gallo</h4>
+                                    <p
+                                        style="color: #38bdf8; font-weight: 500; margin-bottom: 1rem; font-size: 0.95rem;">
+                                        Relator, Veedor de Autenticidad, Evaluador</p>
+                                    <p id="member1-role" style="color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+                                        <strong style="color: #a78bfa;">Edad:</strong> 25 años<br><br><strong
+                                            style="color: #a78bfa;">Formación:</strong> Estudiante de Licenciatura en
+                                        Educación Infantil, UNAD-Valledupar<br><br><strong
+                                            style="color: #a78bfa;">Perfil:</strong> Reservista militar, persona llena
+                                        de valores y principios fundamentados desde casa. Emprendedora, dispuesta a
+                                        aprender cada día para ser una futura docente servicial con capacidad para
+                                        educar de manera eficaz.
+                                    </p>
+                                </div>
+                            </div><!-- Integrante 2 -->
+                            <div class="member-card">
+                                <img id="member2-photo" src="img/SANDRA.jpeg" alt="Foto de integrante 2" loading="lazy"
+                                    class="rounded-lg w-full object-cover"
+                                    style="aspect-ratio: 1; height: 350px; margin-bottom: 1.5rem;"
+                                    onerror="console.error('Image failed to load:', this.src); this.style.background='#a78bfa22'; this.alt='Foto no disponible';">
+                                <div style="padding: 0;">
+                                    <h4 id="member2-name" class="text-lg font-semibold"
+                                        style="color: #f1f5f9; margin-bottom: 0.75rem;">Sandra Isabel Padilla Moreno
+                                    </h4>
+                                    <p
+                                        style="color: #38bdf8; font-weight: 500; margin-bottom: 1rem; font-size: 0.95rem;">
+                                        Utilera</p>
+                                    <p id="member2-role" style="color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+                                        <strong style="color: #a78bfa;">Edad:</strong> 22 años<br><br><strong
+                                            style="color: #a78bfa;">Formación:</strong> Estudiante de Licenciatura en
+                                        Educación Infantil<br><br><strong style="color: #a78bfa;">Perfil:</strong>
+                                        Persona muy alegre, amable y servicial. Actualmente trabajo como docente en un
+                                        colegio privado. Me esfuerzo por dar lo mejor de mí, compartiendo conocimientos
+                                        y enseñanzas a los niños. Feliz de ejercer mi profesión y de aprender cada día.
+                                    </p>
+                                </div>
+                            </div><!-- Integrante 3 -->
+                            <div class="member-card">
+                                <img id="member3-photo" src="img/Lisseth.jpeg" alt="Foto de integrante 3" loading="lazy"
+                                    class="rounded-lg w-full object-cover"
+                                    style="aspect-ratio: 1; height: 350px; margin-bottom: 1.5rem;"
+                                    onerror="console.error('Image failed to load:', this.src); this.style.background='#a78bfa22'; this.alt='Foto no disponible';">
+                                <div style="padding: 0;">
+                                    <h4 id="member3-name" class="text-lg font-semibold"
+                                        style="color: #f1f5f9; margin-bottom: 0.75rem;">Lisseth Katerine Padilla Sanchez
+                                    </h4>
+                                    <p
+                                        style="color: #38bdf8; font-weight: 500; margin-bottom: 1rem; font-size: 0.95rem;">
+                                        Dinamizadora</p>
+                                    <p id="member3-role" style="color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+                                        <strong style="color: #a78bfa;">Formación:</strong> Estudiante de Licenciatura
+                                        en Pedagogía Infantil, UNAD sede Valledupar<br><br><strong
+                                            style="color: #a78bfa;">Perfil:</strong> Persona amable, servicial y
+                                        empática. Actualmente me desempeño como docente en una institución educativa de
+                                        la ciudad, contribuyendo al desarrollo integral de los niños y niñas.
+                                    </p>
+                                </div>
+                            </div><!-- Integrante 4 -->
+                            <div class="member-card">
+                                <img id="member4-photo" src="img/integrante4.jpeg" alt="Foto de integrante 4"
+                                    loading="lazy" class="rounded-lg w-full object-cover"
+                                    style="aspect-ratio: 1; height: 350px; margin-bottom: 1.5rem;"
+                                    onerror="console.error('Image failed to load:', this.src); this.style.background='#a78bfa22'; this.alt='Foto no disponible';">
+                                <div style="padding: 0;">
+                                    <h4 id="member4-name" class="text-lg font-semibold"
+                                        style="color: #f1f5f9; margin-bottom: 0.75rem;">Yulainis Esther Gutierrez
+                                        Gamarra</h4>
+                                    <p
+                                        style="color: #38bdf8; font-weight: 500; margin-bottom: 1rem; font-size: 0.95rem;">
+                                        Relator </p>
+                                    <p id="member4-role" style="color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+                                        <strong style="color: #a78bfa;">Edad:</strong> 39 años<br><br><strong
+                                            style="color: #a78bfa;">Formación:</strong> licenciatura en educación
+                                        infantil <br><br><strong style="color: #a78bfa;">Perfil:</strong> Aquí va la
+                                        Soy una persona muy amable y servicial actualmente trabajo como agente educativo
+                                        con la identidad del bienestar familiar , comparto mucho con mis compañeras de
+                                        trabajo, me esfuerzo cada día para ser una gran profe para mis niños y veo el
+                                        resultado en el amor que ellos me entregan día tras día.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- Sección de PDF -->
+                <section class="w-full px-6 py-16">
+                    <div class="max-w-5xl mx-auto">
+                        <h3 class="text-2xl font-semibold mb-8" style="color: #f1f5f9;">Matriz</h3>
+                        <div class="rounded-xl overflow-hidden border"
+                            style="background: #1e293b; border-color: #334155; padding: 2rem;">
+                            <div style="margin-bottom: 2rem;">
+                                <embed id="pdf-viewer" src="documento/MATRIZ.pdf" type="application/pdf" width="100%"
+                                    height="600px" style="border-radius: 0.5rem;">
+                            </div>
+                            <div style="padding-top: 1.5rem; border-top: 1px solid #334155;">
+                                <p id="pdf-description" class="text-base leading-relaxed"
+                                    style="color: #94a3b8; margin-top: 1.5rem;">Este documento contiene información
+                                    importante relacionada con el proyecto. Puedes descargarlo o visualizarlo
+                                    directamente desde esta sección.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- Sección de video -->
+                <section class="w-full px-6 py-16">
+                    <div class="max-w-5xl mx-auto">
+                        <h3 class="text-2xl font-semibold mb-8" style="color: #f1f5f9;">Galería Multimedia</h3>
+                        <div class="rounded-xl overflow-hidden" style="background: #1e293b; aspect-ratio: 16/9;">
+                            <video width="100%" height="100%" controls
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="video/VIDEO ANIMADO  INFANCIA Y HISTORIA _20260312_131421_0000.mp4"
+                                    type="video/mp4"> Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                    </div>
+                </section>
+            </div><!-- Página 2: Trayectos históricos -->
+            <div id="page-1" class="page-content w-full hidden">
+                <header class="w-full px-6 pt-12 pb-8">
+                    <div class="max-w-5xl mx-auto">
+                        <div class="w-16 h-1 mb-6 rounded-full"
+                            style="background: linear-gradient(90deg, #a78bfa, #38bdf8);"></div>
+                        <h2 class="text-4xl md:text-5xl font-bold"
+                            style="font-family: 'Playfair Display', serif; color: #f1f5f9;">Trayectos históricos</h2>
+                    </div>
+                </header><!-- Sección de PDF -->
+                <section class="w-full px-6 py-16">
+                    <div class="max-w-5xl mx-auto">
+                        <h3 class="text-2xl font-semibold mb-8" style="color: #f1f5f9;">Documento de Referencia</h3>
+                        <div class="rounded-xl overflow-hidden border"
+                            style="background: #1e293b; border-color: #334155; padding: 2rem;">
+                            <div style="margin-bottom: 2rem;">
+                                <embed id="trayectos-pdf-viewer" src="documento/MATRIZ 2.pdf" type="application/pdf"
+                                    width="100%" height="600px" style="border-radius: 0.5rem;">
+                            </div>
+                            <div style="padding-top: 1.5rem; border-top: 1px solid #334155;">
+                                <p id="trayectos-pdf-description" class="text-base leading-relaxed"
+                                    style="color: #94a3b8; margin-top: 1.5rem;">Explora los trayectos históricos que han
+                                    marcado la construcción de las infancias a través del tiempo. Este documento
+                                    presenta un análisis detallado de los cambios y transformaciones en la forma de
+                                    entender y vivir la infancia en diferentes contextos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- Sección de Diapositivas Canva -->
+                <section class="w-full px-6 py-16 border-t" style="border-color: #1e293b;">
+                    <div class="max-w-5xl mx-auto">
+                        <h3 class="text-2xl font-semibold mb-8" style="color: #f1f5f9;">Presentación Visual</h3>
+                        <div class="rounded-xl overflow-hidden border"
+                            style="background: #1e293b; border-color: #334155; padding: 2rem;">
+                            <div style="margin-bottom: 2rem;">
+                                <embed id="presentacion-pdf-viewer" src="documento/DIAPO.pdf"
+                                    type="application/pdf" width="100%" height="600px" style="border-radius: 0.5rem;">
+                            </div>
+                            <div style="padding-top: 1.5rem; border-top: 1px solid #334155;">
+                                <p style="color: #94a3b8; text-base leading-relaxed; margin-top: 1.5rem;">Visualiza la
+                                    presentación interactiva del proyecto. Si tienes dificultades para ver el PDF,
+                                    descárgalo o consulta la versión completa en Canva.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div><!-- Página 3: Transformación de realidades -->
+            <div id="page-2" class="page-content w-full hidden">
+                <header class="w-full px-6 pt-12 pb-8">
+                    <div class="max-w-5xl mx-auto">
+                        <div class="w-16 h-1 mb-6 rounded-full"
+                            style="background: linear-gradient(90deg, #a78bfa, #38bdf8);"></div>
+                        <h2 class="text-4xl md:text-5xl font-bold"
+                            style="font-family: 'Playfair Display', serif; color: #f1f5f9;">Transformación de realidades
+                        </h2>
+                    </div>
+                </header>
+                <section class="w-full px-6 py-16">
+                    <div class="max-w-5xl mx-auto">
+                        <p style="color: #94a3b8; text-lg;">Contenido para Transformación de realidades</p>
+                    </div>
+                </section>
+            </div><!-- Página 4: Desafíos para la acción -->
+            <div id="page-3" class="page-content w-full hidden">
+                <header class="w-full px-6 pt-12 pb-8">
+                    <div class="max-w-5xl mx-auto">
+                        <div class="w-16 h-1 mb-6 rounded-full"
+                            style="background: linear-gradient(90deg, #a78bfa, #38bdf8);"></div>
+                        <h2 class="text-4xl md:text-5xl font-bold"
+                            style="font-family: 'Playfair Display', serif; color: #f1f5f9;">Desafíos para la acción</h2>
+                    </div>
+                </header>
+                <section class="w-full px-6 py-16">
+                    <div class="max-w-5xl mx-auto">
+                        <p style="color: #94a3b8; text-lg;">Contenido para Desafíos para la acción</p>
+                    </div>
+                </section>
+            </div>
+        </div><!-- Footer -->
+        <footer class="w-full px-6 py-10 text-center border-t" style="border-color: #1e293b;">
+            <p id="footer-text" class="text-sm" style="color: #64748b;">© 2025 Construcción Histórica de las Infancias ·
+                Investigación y desarrollo participativo</p>
+        </footer>
+    </div>
+    <script>
+        const defaultConfig = {
+            background_color: '#0f172a',
+            surface_color: '#1e293b',
+            text_color: '#f1f5f9',
+            primary_action: '#a78bfa',
+            secondary_action: '#38bdf8',
+            font_family: 'Outfit',
+            font_size: 16,
+            page_title: 'El lugar de las infancias',
+            intro_text: 'Este proyecto explora el espacio donde se desarrollan las infancias, considerando los contextos sociales, culturales y emocionales que moldean el crecimiento de los niños y niñas. Buscamos entender cómo el entorno influye en la formación de identidades y experiencias únicas en cada etapa del desarrollo infantil.',
+            member1_name: 'Noemi Jhoana Paredes Gallo',
+            member1_role: 'Edad: 25 años\n\nFormación: Estudiante de Licenciatura en Educación Infantil, UNAD-Valledupar\n\nPerfil: Reservista militar, persona llena de valores y principios fundamentados desde casa.',
+            member2_name: 'Sandra Isabel Padilla Moreno',
+            member2_role: 'Edad: 22 años\n\nFormación: Estudiante de Licenciatura en Educación Infantil\n\nPerfil: Persona muy alegre, amable y servicial.',
+            member3_name: 'Lisseth Katerine Padilla Sanchez',
+            member3_role: 'Formación: Estudiante de Licenciatura en Pedagogía Infantil, UNAD sede Valledupar\n\nPerfil: Persona amable, servicial y empática.',
+            member4_name: 'Nuevo Integrante',
+            member4_role: 'Edad: Por completar\n\nFormación: Información pendiente\n\nPerfil: Aquí va la descripción del nuevo integrante del equipo.',
+            pdf_description: 'Este documento contiene información importante relacionada con el proyecto. Puedes descargarlo o visualizarlo directamente desde esta sección.',
+            footer_text: '© 2025 Construcción Histórica de las Infancias · Investigación y desarrollo participativo'
+        };
+
+        const els = {
+            wrapper: document.getElementById('app-wrapper'),
+            pageTitle: document.getElementById('page-title'),
+            introText: document.getElementById('intro-text'),
+            member1Name: document.getElementById('member1-name'),
+            member1Role: document.getElementById('member1-role'),
+            member2Name: document.getElementById('member2-name'),
+            member2Role: document.getElementById('member2-role'),
+            member3Name: document.getElementById('member3-name'),
+            member3Role: document.getElementById('member3-role'),
+            member4Name: document.getElementById('member4-name'),
+            member4Role: document.getElementById('member4-role'),
+            pdfDescription: document.getElementById('pdf-description'),
+            footerText: document.getElementById('footer-text')
+        };
+
+        function onConfigChange(config) {
+            const bg = config.background_color || defaultConfig.background_color;
+            const text = config.text_color || defaultConfig.text_color;
+            const fontFamily = config.font_family || defaultConfig.font_family;
+            const baseSize = config.font_size || defaultConfig.font_size;
+
+            els.wrapper.style.backgroundColor = bg;
+            els.wrapper.style.fontFamily = `${fontFamily}, 'Outfit', sans-serif`;
+            els.pageTitle.style.fontFamily = `${fontFamily}, 'Playfair Display', serif`;
+            els.pageTitle.style.fontSize = `${baseSize * 2.5}px`;
+            els.pageTitle.style.color = text;
+            els.introText.style.fontSize = `${baseSize * 1.1}px`;
+            els.introText.style.color = text;
+            els.footerText.style.fontSize = `${baseSize * 0.85}px`;
+
+            els.pageTitle.textContent = config.page_title || defaultConfig.page_title;
+            els.introText.textContent = config.intro_text || defaultConfig.intro_text;
+            els.member1Name.textContent = config.member1_name || defaultConfig.member1_name;
+            els.member1Role.textContent = config.member1_role || defaultConfig.member1_role;
+            els.member2Name.textContent = config.member2_name || defaultConfig.member2_name;
+            els.member2Role.textContent = config.member2_role || defaultConfig.member2_role;
+            els.member3Name.textContent = config.member3_name || defaultConfig.member3_name;
+            els.member3Role.textContent = config.member3_role || defaultConfig.member3_role;
+            els.member4Name.textContent = config.member4_name || defaultConfig.member4_name;
+            els.member4Role.textContent = config.member4_role || defaultConfig.member4_role;
+            els.pdfDescription.textContent = config.pdf_description || defaultConfig.pdf_description;
+            els.footerText.textContent = config.footer_text || defaultConfig.footer_text;
+        }
+
+        function mapToCapabilities(config) {
+            function colorMutable(key) {
+                return {
+                    get: () => config[key] || defaultConfig[key],
+                    set: (v) => { config[key] = v; window.elementSdk.setConfig({ [key]: v }); }
+                };
+            }
+            return {
+                recolorables: [
+                    colorMutable('background_color'),
+                    colorMutable('surface_color'),
+                    colorMutable('text_color'),
+                    colorMutable('primary_action'),
+                    colorMutable('secondary_action')
+                ],
+                borderables: [],
+                fontEditable: {
+                    get: () => config.font_family || defaultConfig.font_family,
+                    set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+                },
+                fontSizeable: {
+                    get: () => config.font_size || defaultConfig.font_size,
+                    set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+                }
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ['page_title', config.page_title || defaultConfig.page_title],
+                ['intro_text', config.intro_text || defaultConfig.intro_text],
+                ['member1_name', config.member1_name || defaultConfig.member1_name],
+                ['member1_role', config.member1_role || defaultConfig.member1_role],
+                ['member2_name', config.member2_name || defaultConfig.member2_name],
+                ['member2_role', config.member2_role || defaultConfig.member2_role],
+                ['member3_name', config.member3_name || defaultConfig.member3_name],
+                ['member3_role', config.member3_role || defaultConfig.member3_role],
+                ['member4_name', config.member4_name || defaultConfig.member4_name],
+                ['member4_role', config.member4_role || defaultConfig.member4_role],
+                ['pdf_description', config.pdf_description || defaultConfig.pdf_description],
+                ['footer_text', config.footer_text || defaultConfig.footer_text]
+            ]);
+        }
+
+        window.elementSdk.init({
+            defaultConfig,
+            onConfigChange,
+            mapToCapabilities,
+            mapToEditPanelValues
+        });
+
+        function handleNavClick(pageIndex, event) {
+            event.preventDefault();
+            document.querySelectorAll('.page-content').forEach(page => page.classList.add('hidden'));
+            document.getElementById(`page-${pageIndex}`).classList.remove('hidden');
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        lucide.createIcons();
+
+
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9ec4750895a3f7b4',t:'MTc3NjE4ODAyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
